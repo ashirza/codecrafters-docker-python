@@ -9,12 +9,12 @@ def main():
     
     try:
         completed_process = subprocess.run([command, *args], capture_output=True)
+        print(completed_process)
     except subprocess.CalledProcessError as e:
         exit_code = e.returncode
         print(exit_code)
         sys.exit(exit_code)        
     finally:
-        print(completed_process)
         if completed_process.stdout:
             stdout = completed_process.stdout.decode("utf-8")
             stdout = stdout.replace("\n", "")
