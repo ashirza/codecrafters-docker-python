@@ -10,8 +10,8 @@ def main():
     completed_process = subprocess.run([command, *args], capture_output=True)
     if completed_process.stdout:
         print(completed_process.stdout.decode("utf-8"))
-    elif completed_process.stderr:
-        print(completed_process.stderr.decode("utf-8"), file=sys.stderr)
+    # elif completed_process.stderr:
+    #     print(completed_process.stderr.decode("utf-8"), file=sys.stderr)
 
 
 if __name__ == "__main__":
