@@ -11,6 +11,7 @@ def main():
         completed_process = subprocess.run([command, *args], capture_output=True)
     except subprocess.CalledProcessError as e:
         exit_code = e.returncode
+        print(exit_code)
         sys.exit(exit_code)        
     finally:
         if completed_process.stdout:
