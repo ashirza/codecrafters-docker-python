@@ -12,8 +12,10 @@ def main():
         stdout = completed_process.stdout.decode("utf-8")
         stdout = stdout.replace("\n", "")
         print(stdout)
-    # elif completed_process.stderr:
-    #     print(completed_process.stderr.decode("utf-8"), file=sys.stderr)
+    elif completed_process.stderr:
+        stderr = completed_process.stderr.decode("utf-8")
+        stderr = stderr.replace("\n", "")
+        print(stderr, file=sys.stderr)
 
 
 if __name__ == "__main__":
