@@ -14,6 +14,7 @@ def main():
         print(exit_code)
         sys.exit(exit_code)        
     finally:
+        print(completed_process)
         if completed_process.stdout:
             stdout = completed_process.stdout.decode("utf-8")
             stdout = stdout.replace("\n", "")
