@@ -9,6 +9,8 @@ def main():
     
     try:
         completed_process = subprocess.run([command, *args], capture_output=True)
+        if completed_process.returncode != 0:
+            print(completed_process)
     except subprocess.CalledProcessError as e:
         exit_code = e.returncode
         print(exit_code)
@@ -22,7 +24,6 @@ def main():
             stderr = completed_process.stderr.decode("utf-8")
             stderr = stderr.replace("\n", "")
             print(stderr, file=sys.stderr)
-        print(completed_process)
 
 
 if __name__ == "__main__":
