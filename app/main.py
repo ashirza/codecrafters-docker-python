@@ -24,7 +24,10 @@ def main():
         completed_process = subprocess.run([command, *args], capture_output=True)
     finally:
         if args[0] == 'ls':
-            print(completed_process)
+            stdout = completed_process.stdout.decode("utf-8")
+            stdout = stdout.replace("\n", "")
+            print(stdout)
+            sys.exit(completed_process.returncode)
         if completed_process.returncode != 0:
             stderr = completed_process.stderr.decode("utf-8")
             stderr = stderr.replace("\n", "")
