@@ -1,3 +1,5 @@
+import os
+import tempfile
 import subprocess
 import sys
 
@@ -9,6 +11,8 @@ def main():
     if command == "ls":
         print(args)
     try:
+        tempfile_path = tempfile.mkdtemp()
+        os.chroot(tempfile_path)
         completed_process = subprocess.run([command, *args], capture_output=True)
     finally:
         if completed_process.returncode != 0:
