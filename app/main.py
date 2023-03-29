@@ -9,10 +9,9 @@ def main():
     command = sys.argv[3]
     args = sys.argv[4:]
     if command == "ls":
-        print(args)
-    try:
         tempfile_path = tempfile.mkdtemp()
         os.chroot(tempfile_path)
+    try:
         completed_process = subprocess.run([command, *args], capture_output=True)
     finally:
         if completed_process.returncode != 0:
