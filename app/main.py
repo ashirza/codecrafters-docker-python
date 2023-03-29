@@ -15,6 +15,9 @@ def main():
         completed_process = subprocess.run([command, *args], capture_output=True)
     finally:
         if completed_process.returncode != 0:
+            stderr = completed_process.stderr.decode("utf-8")
+            stderr = stderr.replace("\n", "")
+            print(stderr, file=sys.stderr)
             sys.exit(completed_process.returncode)
         elif completed_process.stdout:
             stdout = completed_process.stdout.decode("utf-8")
