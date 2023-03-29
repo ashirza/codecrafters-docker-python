@@ -15,14 +15,16 @@ def main():
         if command == "ls":
             tempfile_path = tempfile.mkdtemp()
             script_path = tempfile_path + "/usr/local/bin"
+            os.mkdir(tempfile_path + "/usr")
+            os.mkdir(tempfile_path + "/usr/local")
+            os.mkdir(tempfile_path + "/usr/local/bin")
+            shutil.copy("/usr/local/bin/docker-explorer", script_path)
             os.chroot(tempfile_path)
             os.chdir("/")
-            os.mkdir("/usr")
-            os.mkdir("/usr/local")
-            os.mkdir("/usr/local/bin")
-            shutil.copy("/usr/local/bin/docker-explorer", script_path)
         completed_process = subprocess.run([command, *args], capture_output=True)
     finally:
+        if command == "ls":
+            print(completed_process)
         if completed_process.returncode != 0:
             stderr = completed_process.stderr.decode("utf-8")
             stderr = stderr.replace("\n", "")
