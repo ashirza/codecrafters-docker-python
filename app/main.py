@@ -15,7 +15,7 @@ def main():
         if command == "ls":
             tempfile_path = tempfile.mkdtemp()
             shutil.copy("/usr/local/bin/docker-explorer", tempfile_path + "/usr/local/bin/")
-            os.mkdir(tempfile_path + args[-1])
+            # os.mkdir(tempfile_path + args[-1])
             os.chroot(tempfile_path)
             os.chdir(tempfile_path)
             # command = os.path.basename(os.path.normpath(command))
