@@ -18,7 +18,7 @@ def main():
             os.mkdir(tempfile_path + args[-1])
             # os.chroot(tempfile_path)
             os.chdir(tempfile_path)
-            command = os.path.basename(os.path.normpath(command))
+            # command = os.path.basename(os.path.normpath(command))
         completed_process = subprocess.run([command, *args], capture_output=True)
     finally:
         if command == "ls":
