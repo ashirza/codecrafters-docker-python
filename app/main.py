@@ -13,7 +13,6 @@ def main():
     # Expected stdout to contain "No such file or directory", got: ""
     try:
         if args[0] == "ls":
-            print('helloooooo')
             tempfile_path = tempfile.mkdtemp()
             script_path = tempfile_path + "/usr/local/bin"
             os.mkdir(tempfile_path + "/usr")
@@ -24,6 +23,8 @@ def main():
             os.chdir("/")
         completed_process = subprocess.run([command, *args], capture_output=True)
     finally:
+        if args[0] == 'ls':
+            print(completed_process)
         if completed_process.returncode != 0:
             stderr = completed_process.stderr.decode("utf-8")
             stderr = stderr.replace("\n", "")
