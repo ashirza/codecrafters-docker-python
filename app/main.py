@@ -13,6 +13,7 @@ def main():
     # Expected stdout to contain "No such file or directory", got: ""
     try:
         if args[0] == "ls":
+            print('helloooooo')
             tempfile_path = tempfile.mkdtemp()
             script_path = tempfile_path + "/usr/local/bin"
             os.mkdir(tempfile_path + "/usr")
