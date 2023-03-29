@@ -13,8 +13,8 @@ def main():
     # Expected stdout to contain "No such file or directory", got: ""
     if command == "ls":
         tempfile_path = tempfile.mkdtemp()
-        os.chroot(tempfile_path)
         shutil.copy("/usr/local/bin/docker-explorer", tempfile_path)
+        os.chroot(tempfile_path)
     try:
         completed_process = subprocess.run([command, *args], capture_output=True)
     finally:
