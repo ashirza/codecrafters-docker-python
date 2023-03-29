@@ -2,16 +2,19 @@ import os
 import tempfile
 import subprocess
 import sys
+import shutil
 
 
 def main():
     # pipe programs stdout and stderr to parent process
     command = sys.argv[3]
     args = sys.argv[4:]
-
+    # (expecting that the directory won't be accessible)
+    # Expected stdout to contain "No such file or directory", got: ""
     if command == "ls":
         tempfile_path = tempfile.mkdtemp()
         os.chroot(tempfile_path)
+        shutil.copy("/usr/local/bin/docker-explorer", tempfile_path)
     try:
         completed_process = subprocess.run([command, *args], capture_output=True)
     finally:
