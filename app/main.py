@@ -14,9 +14,9 @@ def main():
     if command == "ls":
         tempfile_path = tempfile.mkdtemp()
         shutil.copy("/usr/local/bin/docker-explorer", tempfile_path)
-        os.chroot(tempfile_path)
     try:
         completed_process = subprocess.run([command, *args], capture_output=True)
+        os.chroot(tempfile_path)
     finally:
         if completed_process.returncode != 0:
             stderr = completed_process.stderr.decode("utf-8")
