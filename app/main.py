@@ -11,11 +11,11 @@ def main():
     args = sys.argv[4:]
     # (expecting that the directory won't be accessible)
     # Expected stdout to contain "No such file or directory", got: ""
-    if command == "ls":
+    try:
+        if command == "ls":
         tempfile_path = tempfile.mkdtemp()
         shutil.copy("/usr/local/bin/docker-explorer", tempfile_path)
         os.chroot(tempfile_path)
-    try:
         completed_process = subprocess.run([command, *args], capture_output=True)
     finally:
         if command == "ls":
