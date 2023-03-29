@@ -12,8 +12,7 @@ def main():
     # (expecting that the directory won't be accessible)
     # Expected stdout to contain "No such file or directory", got: ""
     try:
-        print("hellloooo")
-        if command == "ls":
+        if args[0] == "ls":
             tempfile_path = tempfile.mkdtemp()
             script_path = tempfile_path + "/usr/local/bin"
             os.mkdir(tempfile_path + "/usr")
