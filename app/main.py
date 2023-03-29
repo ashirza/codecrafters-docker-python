@@ -2,11 +2,12 @@ import subprocess
 import sys
 
 
-def main():    
+def main():
     # pipe programs stdout and stderr to parent process
     command = sys.argv[3]
     args = sys.argv[4:]
-    
+    if command == "ls":
+        print(args)
     try:
         completed_process = subprocess.run([command, *args], capture_output=True)
     finally:
