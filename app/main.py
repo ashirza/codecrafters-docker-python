@@ -19,9 +19,8 @@ def main():
             os.mkdir(tempfile_path + '/usr/local')
             os.mkdir(tempfile_path + '/usr/local/bin')
             shutil.copy('/usr/local/bin/docker-explorer', script_path)
-            os.chroot(tempfile)
+            os.chroot(tempfile_path)
             os.chdir('/')
-            # command = os.path.basename(os.path.normpath(command))
         completed_process = subprocess.run([command, *args], capture_output=True)
     finally:
         if completed_process.returncode != 0:
