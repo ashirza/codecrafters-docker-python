@@ -14,8 +14,9 @@ def main():
     try:
         if command == "ls":
             tempfile_path = tempfile.mkdtemp()
-            os.chdir(tempfile_path)
-            os.chroot(".")
+            shutil.copy('/usr/local/bin/docker-explorer', tempfile_path + '/usr/local/bin/')
+            os.chroot(tempfile)
+            os.chdir('/')
             # command = os.path.basename(os.path.normpath(command))
         completed_process = subprocess.run([command, *args], capture_output=True)
     finally:
