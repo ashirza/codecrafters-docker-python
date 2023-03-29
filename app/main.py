@@ -14,13 +14,13 @@ def main():
     try:
         if command == "ls":
             tempfile_path = tempfile.mkdtemp()
-            script_path = tempfile_path + '/usr/local/bin'
-            os.mkdir(tempfile_path + '/usr')
-            os.mkdir(tempfile_path + '/usr/local')
-            os.mkdir(tempfile_path + '/usr/local/bin')
-            shutil.copy('/usr/local/bin/docker-explorer', script_path)
+            script_path = tempfile_path + "/usr/local/bin"
             os.chroot(tempfile_path)
-            os.chdir('/')
+            os.chdir("/")
+            os.mkdir("/usr")
+            os.mkdir("/usr/local")
+            os.mkdir("/usr/local/bin")
+            shutil.copy("/usr/local/bin/docker-explorer", script_path)
         completed_process = subprocess.run([command, *args], capture_output=True)
     finally:
         if completed_process.returncode != 0:
