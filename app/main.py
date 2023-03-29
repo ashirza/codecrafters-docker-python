@@ -23,6 +23,7 @@ def main():
     finally:
         if command == "ls":
             print(completed_process)
+            print('#######################')
         if completed_process.returncode != 0:
             stderr = completed_process.stderr.decode("utf-8")
             stderr = stderr.replace("\n", "")
